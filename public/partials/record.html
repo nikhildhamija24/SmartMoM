@@ -1,0 +1,60 @@
+<div>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css"/>
+    <link href="/stylesheets/font-awesome.min.css" rel="stylesheet">
+    <div id="featureWrap">
+        <div class="container col-md-offset-2">
+            <ng-audio-recorder id='audioInput' audio-model='recordedInput'>
+                <!-- Start controls, exposed via recorder-->
+
+                <div ng-if="recorder.isAvailable" class="row">
+
+                    <div class="col-sm-3 col-xs-12 col-lg-2 text-center feature">
+                        <button kendo-button ng-click="recorder.startRecord()" class="icon"
+                                ng-disabled="recorder.status.isRecording">
+                           <i class="fa1 fa-microphone"></i>
+                        </button>
+                    </div>
+                    <div class="col-sm-3 col-xs-12 col-lg-2 text-center feature">
+                        <button kendo-button ng-click="recorder.stopRecord()" class="icon1"
+                                ng-disabled="recorder.status.isRecording === false">
+                            <i class="faStop fa-stop"></i>
+                        </button>
+                    </div>
+                    <div class="col-sm-3 col-xs-12 col-lg-2 text-center feature">
+                        <button kendo-button ng-click="recorder.playbackRecording()" class="icon2"
+                                ng-disabled="recorder.status.isRecording || !recorder.audioModel">
+                            <i class="fa1 fa-play-circle-o"></i>
+                        </button>
+                    </div>
+                    <div class="col-sm-3 col-xs-12 col-lg-2 text-center feature">
+                        <button kendo-button ng-click="recorder.upload()" class="icon1">
+                            <i class="fa1 fa-cloud-upload"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div ng-if="!recorder.isAvailable">
+                    Audio Recoding is not supported by your browser.
+                </div>
+                <!-- End controls-->
+            </ng-audio-recorder>
+
+        </div>
+
+    </div>
+    <div class="col-md-8 col-md-offset-2 container">
+        <div kendo-grid="filegrid" k-data-source="files" k-options="detailGridOptions"></div>
+        <!--<div class="container file-item" ng-repeat="file in files" style="width: 100%">
+            <span class="file-list-author col-md-3">
+                {{file.author}}
+            </span>
+            <span class="file-list-filename col-md-6">
+                {{file.filename}}
+            </span>
+            <span class="file-list-timestamp col-md-3">
+                {{file.created_on}}
+            </span>
+        </div>-->
+    </div>
+</div>
